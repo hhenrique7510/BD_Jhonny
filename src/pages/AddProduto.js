@@ -8,11 +8,11 @@ export default function AddProduto() {
         id: "",
         nome: "",
         valor: "",
-        tipo: ""
+        produtos_tipo: ""  // Ensure the key name matches the backend model
     });
     const [error, setError] = useState("");
 
-    const { id, nome, valor, tipo } = produto;
+    const { id, nome, valor, produtos_tipo } = produto;
 
     const onInputChange = (e) => {
         setProduto({ ...produto, [e.target.name]: e.target.value });
@@ -20,17 +20,17 @@ export default function AddProduto() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        setError("");  
+        setError("");  // Reset error message
 
         const data = {
             id,
             nome,
             valor: parseFloat(valor),
-            tipo
+            produtos_tipo  // Ensure this key matches the backend field
         };
-        
+
         try {
-            console.log("Dados enviados:", data);  // Log dos dados enviados para depuração
+            console.log("Dados enviados:", data); 
             const response = await axios.post("http://localhost:8080/product", data, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -40,17 +40,17 @@ export default function AddProduto() {
             navigate("/cadastrarproduto");
         } catch (error) {
             if (error.response) {
-               
+                // Server responded with a status code outside the range of 2xx
                 console.error('Erro na resposta do servidor:', error.response.data);
                 console.error('Código de status:', error.response.status);
                 console.error('Headers:', error.response.headers);
                 setError(`Erro: ${error.response.status} - ${JSON.stringify(error.response.data)}`);
             } else if (error.request) {
-                
+                // The request was made but no response was received
                 console.error('Nenhuma resposta recebida:', error.request);
                 setError('Erro: Nenhuma resposta recebida do servidor.');
             } else {
-               
+                // Something happened in setting up the request
                 console.error('Erro ao configurar a solicitação:', error.message);
                 setError(`Erro: ${error.message}`);
             }
@@ -97,14 +97,14 @@ export default function AddProduto() {
                         />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="tipo" className="form-label">Tipo:</label>
+                        <label htmlFor="produtos_tipo" className="form-label">Tipo de Produto:</label>
                         <input
                             type="text"
                             className="form-control"
-                            name="tipo"
-                            value={tipo}
+                            name="produtos_tipo"
+                            value={produtos_tipo}
                             onChange={(e) => onInputChange(e)}
-                            placeholder="Tipo do produto"
+                            placeholder="Tipo de produto"
                         />
                     </div>
                     <button type="submit" className="btn btn-outline-primary">

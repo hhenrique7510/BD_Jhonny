@@ -5,8 +5,9 @@ import Home from './pages/Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AddFuncionario from './funcionarios/AddFuncionario';
 import EditFuncionario from './funcionarios/EditFuncionario';
-import CadastrarProduto from './pages/cadastrarproduto'; 
-import AddProduto from './pages/AddProduto';
+import CadastrarProduto from './pages/cadastrarproduto';
+import AddProduto from './pages/AddProduto'; // Importar o novo componente
+
 function App() {
   return (
     <div className="App">
@@ -17,8 +18,8 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/addfuncionario" element={<AddFuncionario />} />
           <Route exact path="/editfuncionario/:cpf" element={<EditFuncionario />} />
-          <Route exact path="/cadastrarproduto" element={<CadastrarProduto />} /> 
-          <Route exact path="/addproduto" element={<AddProduto />} />
+          <Route exact path="/cadastrarproduto" element={<CadastrarProduto />} />
+          <Route exact path="/addproduto" element={<AddProduto />} /> {/* Nova rota */}
         </Routes>
       </Router>
     </div>
