@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const CadastrarProduto = () => {
     const [produtos, setProdutos] = useState([]);
+    const [search, setSearch] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -20,9 +21,26 @@ const CadastrarProduto = () => {
         loadProdutos(); 
     };
 
+    const handleSearchChange = (event) => {
+        setSearch(event.target.value);
+    };
+
+    const filteredProdutos = produtos.filter((produto) =>
+        produto.nome.toLowerCase().includes(search.toLowerCase())
+    );
+
     return (
         <div className="container">
             <h2>Cadastrar Produto</h2>
+            <div className="mb-3">
+                <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Buscar por Nome do Produto"
+                    value={search}
+                    onChange={handleSearchChange}
+                />
+            </div>
             <Link to="/addproduto" className="btn btn-primary mb-3">Cadastrar Produto</Link>
             <table className="table table-bordered">
                 <thead>
@@ -35,7 +53,7 @@ const CadastrarProduto = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {produtos.map(produto => (
+                    {filteredProdutos.map(produto => (
                         <tr key={produto.id_prod}>
                             <td>{produto.id_prod}</td>
                             <td>{produto.nome}</td>
