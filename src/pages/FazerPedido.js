@@ -11,9 +11,9 @@ export default function FazerPedido() {
   const [pedido, setPedido] = useState([]);
   const [quantidades, setQuantidades] = useState({});
   const [showProdutos, setShowProdutos] = useState(false);
+  const [erro, setErro] = useState('');
   const navigate = useNavigate();
 
-  // Função para buscar os garçons da API
   const fetchGarcons = async () => {
     try {
       const response = await axios.get('http://localhost:8080/garcons');
@@ -23,7 +23,6 @@ export default function FazerPedido() {
     }
   };
 
-  // Função para buscar as mesas da API
   const fetchMesas = async () => {
     try {
       const response = await axios.get('http://localhost:8080/mesas');
@@ -33,7 +32,6 @@ export default function FazerPedido() {
     }
   };
 
-  // Função para buscar os produtos da API
   const fetchProdutos = async () => {
     try {
       const response = await axios.get('http://localhost:8080/products');
@@ -86,9 +84,12 @@ export default function FazerPedido() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('CPF selecionado:', cpf);
-    console.log('Mesa selecionada:', mesa);
-    console.log('Produtos do pedido:', pedido);
+    setErro('');
+
+    if (pedido.length === 0) {
+      setErro('O pedido não pode ser enviado sem produtos.');
+      return;
+    }
 
     try {
       // Primeiro, cria o pedido e obtém o ID do pedido criado
@@ -126,6 +127,7 @@ export default function FazerPedido() {
   return (
     <div className="container">
       <h2>Fazer Pedido</h2>
+      {erro && <div className="alert alert-danger">{erro}</div>}
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="cpf" className="form-label">CPF do Garçom:</label>
@@ -214,7 +216,7 @@ export default function FazerPedido() {
             <h5>Total Parcial: R$ {calcularTotalParcial()}</h5>
           </div>
         </div>
-        <button type="submit" className="btn btn-primary mt-4">Enviar Pedido</button>
+        <button type="submit" className="btn btn-primary mt-4" disabled={pedido.length === 0}>Enviar Pedido</button>
       </form>
     </div>
   );
