@@ -104,6 +104,14 @@ export default function FazerPedido() {
         });
       }));
 
+      // Cria a associação do pedido com o garçom e a mesa
+      await axios.post('http://localhost:8080/pedido_garcom_mesa', {
+        fk_funcionario_cpf: cpf,
+        fk_mesa_id_mesa: mesa,
+        fk_pedido_id_pedido: pedidoId,
+        status: 'aberto'
+      });
+
       // Após enviar todos os dados, redirecione para a página inicial
       navigate('/');
     } catch (error) {
