@@ -91,7 +91,20 @@ export default function FazerPedido() {
     console.log('Produtos do pedido:', pedido);
 
     try {
-      await axios.post('http://localhost:8080/pedido', {});
+      // Primeiro, cria o pedido e obtém o ID do pedido criado
+      const response = await axios.post('http://localhost:8080/pedido', {});
+      const pedidoId = response.data;
+
+      // Em seguida, cria as associações de produtos com o pedido
+      await Promise.all(pedido.map(produto => {
+        return axios.post('http://localhost:8080/pedido_produto', {
+          fk_produtos_id_prod: produto.id_prod,
+          fk_pedido_id_pedido: pedidoId,
+          qtd_produto: produto.quantidade
+        });
+      }));
+
+      // Após enviar todos os dados, redirecione para a página inicial
       navigate('/');
     } catch (error) {
       console.error('Erro ao enviar pedido:', error);
