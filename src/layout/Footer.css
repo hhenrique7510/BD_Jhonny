@@ -1,0 +1,17 @@
+/* src/layout/Footer.css */
+footer {
+    background-color: #211F20; /* Escuro para combinar com o fundo do logo */
+    color: #C1883D; /* Um dourado suave para o texto do footer */
+    padding: 0.05px 0;
+    margin-top: auto; /* Isso empurra o footer para baixo */
+  }
+  
+  footer a {
+    color: #C1883D; /* Um dourado suave para os links */
+    text-decoration: underline;
+  }
+  
+  footer p {
+    color: #C1883D; /* Um dourado suave para o texto do footer */
+  }
+  

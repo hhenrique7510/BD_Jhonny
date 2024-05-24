@@ -1,17 +1,17 @@
 // src/layout/Navbar.js
 import React from "react";
 import { Link } from "react-router-dom";
-import './Navbar.css';  // Ensure the CSS file is imported
+import './Navbar.css';  // Certifique-se de importar um arquivo CSS para estilização
 
 export default function Navbar() {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+      <nav className="custom-navbar">
         <div className="container-fluid d-flex align-items-center">
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand custom-brand" to="/">
             Home Page
           </Link>
-          <div className="collapse navbar-collapse">
+          <div className="custom-collapse">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
                 <Link className="nav-link custom-link" to="/funcionarios">

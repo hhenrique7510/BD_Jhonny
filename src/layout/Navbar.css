@@ -1,0 +1,36 @@
+/* src/layout/Navbar.css */
+.custom-navbar {
+    background-color:#211F20 !important; /* Adicionando !important para garantir a aplicação */
+    color: #f0e5d8;
+    padding: 0.5rem 1rem;
+  }
+
+.custom-navbar .container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-nav {
+    display: flex; /* Confirma que os itens da navbar devem ser dispostos lado a lado */
+    flex-direction: row; /* Explicitamente definindo a direção como linha */
+    list-style-type: none; /* Remove os marcadores de lista */
+    padding: 0; /* Remove o padding padrão das listas */
+  }
+  
+  .nav-item {
+    margin-right: 20px; /* Espaço entre os itens */
+  }
+  
+  .custom-collapse {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-grow: 1; /* Permite que o container cresça e ocupe o espaço disponível */
+  }
+  
+  .custom-link, .navbar-brand {
+    color: #C1883D; /* Cor dos links */
+    font-size: 1.5rem; /* Aumento do tamanho da fonte dos links */
+}
+  
