@@ -23,6 +23,11 @@ export default function Navbar() {
                   Cadastrar Produtos
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link custom-link" to="/fazerpedido">
+                  Fazer Pedido
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
