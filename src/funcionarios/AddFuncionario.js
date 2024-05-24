@@ -47,10 +47,10 @@ export default function AddFuncionario() {
                 });
             }
 
-            // Se o tipo for "Nutricionista", criar o garçom
+            // Se o tipo for "Nutricionista", criar o nutricionista
             if (funcionario.tipo === "Nutricionista") {
                 const nutricionistaData = {
-                    fk_funcionario_cpf: funcionario.cpf,
+                    fkFuncionarioCpf: funcionario.cpf
                 };
 
                 await axios.post("http://localhost:8080/nutricionista", nutricionistaData, {
@@ -88,7 +88,6 @@ export default function AddFuncionario() {
                         <label className="form-label">Tipo:</label>
                         <select className="form-control" name="tipo" value={funcionario.tipo} onChange={onInputChange}>
                             <option value="">Selecione o tipo</option>
-                            <option value="Admin">Admin</option>
                             <option value="Nutricionista">Nutricionista</option>
                             <option value="Garcom">Garçom</option>
                         </select>
