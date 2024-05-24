@@ -94,7 +94,7 @@ export default function AddFuncionario() {
                         </select>
                     </div>
                     <button type="submit" className="btn btn-outline-primary">Submit</button>
-                    <button type="button" className="btn btn-outline-danger mx-2" onClick={() => navigate("/")}>Cancel</button>
+                    <button type="button" className="btn btn-outline-danger mx-2" onClick={() => navigate("/funcionarios")}>Cancel</button>
                 </form>
             </div>
         </div>

@@ -9,10 +9,15 @@ export default function Navbar() {
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <div className="container-fluid d-flex align-items-center">
           <Link className="navbar-brand" to="/">
-            Full Stack Application
+            Home Page
           </Link>
           <div className="collapse navbar-collapse">
             <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <Link className="nav-link custom-link" to="/funcionarios">
+                  Cadastrar Funcionarios
+                </Link>
+              </li>
               <li className="nav-item">
                 <Link className="nav-link custom-link" to="/cadastrarproduto">
                   Cadastrar Produtos

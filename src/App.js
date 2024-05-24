@@ -2,6 +2,7 @@ import './App.css';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Navbar from './layout/Navbar';
 import Home from './pages/Home';
+import Funcionarios from './pages/Funcionarios';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AddFuncionario from './funcionarios/AddFuncionario';
 import EditFuncionario from './funcionarios/EditFuncionario';
@@ -15,7 +16,8 @@ function App() {
         <Navbar />
 
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route exact path="/" element={<Home/>} />
+          <Route exact path="/funcionarios" element={<Funcionarios/>} />
           <Route exact path="/addfuncionario" element={<AddFuncionario />} />
           <Route exact path="/editfuncionario/:cpf" element={<EditFuncionario />} />
           <Route exact path="/cadastrarproduto" element={<CadastrarProduto />} />
