@@ -1,0 +1,13 @@
+/* src/pages/Home.css */
+.home-background {
+    background-image: url('/src/imagens/DALL·E\ 2024-05-24\ 10.49.44\ -\ A\ background\ image\ for\ a\ website\ featuring\ the\ \'JOHNNY\ GASTROBAR\'\ logo.\ The\ design\ should\ be\ in\ a\ high\ resolution\,\ with\ the\ logo\ prominently\ displayed.webp'); /* URL relativa à raiz do servidor */
+    background-size: cover; 
+    background-position: center; 
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  

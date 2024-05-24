@@ -1,7 +1,10 @@
-import React from 'react'
+// src/pages/Home.js
+import React from 'react';
+import './Home.css'; 
 
 export default function Home() {
   return (
-    <div>Home</div>
-  )
+    <div className="home-background">
+    </div>
+  );
 }
