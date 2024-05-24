@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function FazerPedido() {
   const [cpf, setCpf] = useState('');
@@ -10,6 +11,7 @@ export default function FazerPedido() {
   const [pedido, setPedido] = useState([]);
   const [quantidades, setQuantidades] = useState({});
   const [showProdutos, setShowProdutos] = useState(false);
+  const navigate = useNavigate();
 
   // Função para buscar os garçons da API
   const fetchGarcons = async () => {
@@ -82,11 +84,18 @@ export default function FazerPedido() {
     setPedido(pedido.filter((_, i) => i !== index));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('CPF selecionado:', cpf);
     console.log('Mesa selecionada:', mesa);
     console.log('Produtos do pedido:', pedido);
+
+    try {
+      await axios.post('http://localhost:8080/pedido', {});
+      navigate('/');
+    } catch (error) {
+      console.error('Erro ao enviar pedido:', error);
+    }
   };
 
   const calcularTotalParcial = () => {

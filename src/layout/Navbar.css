@@ -19,7 +19,7 @@
   }
   
   .nav-item {
-    margin-right: 20px; /* Espaço entre os itens */
+    margin-right: 80px; /* Espaço entre os itens */
   }
   
   .custom-collapse {
@@ -29,8 +29,14 @@
     flex-grow: 1; /* Permite que o container cresça e ocupe o espaço disponível */
   }
   
-  .custom-link, .navbar-brand {
+  .custom-link{
     color: #C1883D; /* Cor dos links */
     font-size: 1.5rem; /* Aumento do tamanho da fonte dos links */
+}
+
+.navbar-brand {
+  color: #C1883D; /* Cor dos links */
+  font-size: 1.5rem; /* Aumento do tamanho da fonte dos links */
+
 }
   
