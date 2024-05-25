@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function PedidosAbertosPorMesa() {
   const [mesas, setMesas] = useState([]);
@@ -7,6 +8,7 @@ export default function PedidosAbertosPorMesa() {
   const [pedidos, setPedidos] = useState([]);
   const [produtos, setProdutos] = useState([]);
   const [produtoInfo, setProdutoInfo] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMesas = async () => {
@@ -62,6 +64,45 @@ export default function PedidosAbertosPorMesa() {
     setMesaId(e.target.value);
   };
 
+  const agruparProdutos = () => {
+    const agrupados = {};
+
+    produtos.forEach(produto => {
+      const info = produtoInfo[produto.fk_produtos_id_prod];
+      if (info) {
+        if (!agrupados[info.nome]) {
+          agrupados[info.nome] = {
+            nome: info.nome,
+            valor: info.valor,
+            quantidade: 0,
+            valorParcial: 0
+          };
+        }
+        agrupados[info.nome].quantidade += produto.qtd_produto;
+        agrupados[info.nome].valorParcial = agrupados[info.nome].quantidade * info.valor;
+      }
+    });
+
+    return Object.values(agrupados);
+  };
+
+  const calcularValorTotal = (produtosAgrupados) => {
+    return produtosAgrupados.reduce((total, produto) => total + produto.valorParcial, 0).toFixed(2);
+  };
+
+  const calcularValorTotalComOpcional = (valorTotal) => {
+    return (valorTotal * 1.1).toFixed(2);
+  };
+
+  const produtosAgrupados = agruparProdutos();
+  const valorTotal = parseFloat(calcularValorTotal(produtosAgrupados));
+  const valorTotalComOpcional = calcularValorTotalComOpcional(valorTotal);
+
+  const handlePagarConta = () => {
+    // Aqui você pode adicionar lógica adicional para processar o pagamento, se necessário
+    navigate('/');
+  };
+
   return (
     <div className="container">
       <h2>Pedidos Abertos por Mesa</h2>
@@ -94,14 +135,23 @@ export default function PedidosAbertosPorMesa() {
       <div className="mt-4">
         <h4>Itens dos Pedidos Abertos:</h4>
         <ul className="list-group">
-          {produtos.map((produto, index) => (
+          {produtosAgrupados.map((produto, index) => (
             <li key={index} className="list-group-item">
-              Produto: {produtoInfo[produto.fk_produtos_id_prod]?.nome || `ID: ${produto.fk_produtos_id_prod}`}, 
-              Valor: {produtoInfo[produto.fk_produtos_id_prod]?.valor ? `R$ ${produtoInfo[produto.fk_produtos_id_prod].valor.toFixed(2)}` : 'N/A'}, 
-              Pedido ID: {produto.fk_pedido_id_pedido}, Quantidade: {produto.qtd_produto}
+              Produto: {produto.nome}, Quantidade: {produto.quantidade}, Valor Unitário: R$ {produto.valor.toFixed(2)}, Valor Parcial: R$ {produto.valorParcial.toFixed(2)}
             </li>
           ))}
         </ul>
+      </div>
+      <div className="mt-4">
+        <h4>Valor Total da Conta:</h4>
+        <p>R$ {valorTotal}</p>
+      </div>
+      <div className="mt-4">
+        <h4>Valor Total com 10% Opcional:</h4>
+        <p>R$ {valorTotalComOpcional}</p>
+      </div>
+      <div className="mt-4">
+        <button className="btn btn-primary" onClick={handlePagarConta} disabled={pedidos.length === 0}>Pagar a Conta</button>
       </div>
     </div>
   );
