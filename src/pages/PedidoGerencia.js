@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default function PedidosAbertosPorMesa() {
+export default function PedidoGerencia() {
   const [mesas, setMesas] = useState([]);
   const [mesaId, setMesaId] = useState('');
   const [pedidos, setPedidos] = useState([]);

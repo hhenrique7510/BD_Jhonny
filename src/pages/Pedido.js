@@ -9,6 +9,7 @@ export default function Pedido() {
       <div className="mt-4">
         <Link className="btn btn-dark me-2" to="/fazerpedido">Fazer Pedido</Link>
         <Link className="btn btn-dark me-2" to="/pedidosabertospormesa">Pedidos Abertos Por Mesa</Link>
+        <Link className="btn btn-dark me-2" to="/pedidogerencia">Pedido Gerência</Link>
       </div>
     </div>
   );
