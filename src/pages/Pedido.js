@@ -8,7 +8,7 @@ export default function Pedido() {
       <h1>Menu de Pedido</h1>
       <div className="mt-4">
         <Link className="btn btn-dark me-2" to="/fazerpedido">Fazer Pedido</Link>
-        <Link className="btn btn-dark me-2" to="/fecharconta">Fechar Conta</Link>
+        <Link className="btn btn-dark me-2" to="/pedidosabertospormesa">Pedidos Abertos Por Mesa</Link>
       </div>
     </div>
   );

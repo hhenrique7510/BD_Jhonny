@@ -14,6 +14,7 @@ import AddProduto from './pages/AddProduto';
 import EditProduto from './pages/EditProduto';
 import FazerPedido from './pages/FazerPedido';
 import Pedido from './pages/Pedido';
+import PedidoAbertosPorMesa from './pages/PedidosAbertosPorMesa';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route exact path="/editproduto/:id_prod" element={<EditProduto />} /> 
           <Route exact path="/pedido" element={<Pedido />} /> 
           <Route exact path="/fazerpedido" element={<FazerPedido />} /> 
+          <Route exact path="/pedidosabertospormesa" element={<PedidoAbertosPorMesa />} /> 
         </Routes>
         <Footer />  {/* Adicionar o Footer aqui */}
       </Router>
