@@ -98,9 +98,13 @@ export default function PedidosAbertosPorMesa() {
   const valorTotal = parseFloat(calcularValorTotal(produtosAgrupados));
   const valorTotalComOpcional = calcularValorTotalComOpcional(valorTotal);
 
-  const handlePagarConta = () => {
-    // Aqui você pode adicionar lógica adicional para processar o pagamento, se necessário
-    navigate('/');
+  const handlePagarConta = async () => {
+    try {
+      await axios.put(`http://localhost:8080/pedido_garcom_mesa/fechar/${mesaId}`);
+      navigate('/');
+    } catch (error) {
+      console.error('Erro ao fechar pedidos:', error);
+    }
   };
 
   return (
