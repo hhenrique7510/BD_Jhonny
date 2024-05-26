@@ -113,6 +113,12 @@ export default function Funcionarios() {
                                     >
                                         Delete
                                     </button>
+                                    <Link
+                                        className="btn btn-outline-primary mx-2"
+                                        to={`/dependentes/${funcionario.cpf}`}
+                                    >
+                                        Dependente
+                                    </Link>
                                 </td>
                             </tr>
                         ))}

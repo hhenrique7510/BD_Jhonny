@@ -71,7 +71,7 @@ export default function AddFuncionario() {
                 <h2 className="text-center m-4">Registrar Funcionário</h2>
                 {error && <div className="alert alert-danger">{error}</div>}
                 <form onSubmit={onSubmit}>
-                    {["cpf", "celular", "nome", "senha", "emailPrincipal", "bairro", "salario", "rua", "numero", "cep"].map((field, index) => (
+                    {["cpf", "celular", "nome", "senha", "emailPrincipal","emailSecundario", "bairro", "salario", "rua", "numero", "cep"].map((field, index) => (
                         <div className="mb-3" key={index}>
                             <label className="form-label">{field.charAt(0).toUpperCase() + field.slice(1)}:</label>
                             <input

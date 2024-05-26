@@ -16,6 +16,7 @@ import FazerPedido from './pages/FazerPedido';
 import Pedido from './pages/Pedido';
 import PedidoAbertosPorMesa from './pages/PedidosAbertosPorMesa';
 import PedidoGerencia from './pages/PedidoGerencia';
+import DependenteList from './pages/DependenteList.js';
 
 function App() {
   return (
@@ -33,7 +34,8 @@ function App() {
           <Route exact path="/pedido" element={<Pedido />} /> 
           <Route exact path="/fazerpedido" element={<FazerPedido />} /> 
           <Route exact path="/pedidogerencia" element={<PedidoGerencia />} /> 
-          <Route exact path="/pedidosabertospormesa" element={<PedidoAbertosPorMesa />} /> 
+          <Route exact path="/pedidosabertospormesa" element={<PedidoAbertosPorMesa />} />
+          <Route exact path="/dependentes/:cpf" element={<DependenteList />} />
         </Routes>
         <Footer />  {/* Adicionar o Footer aqui */}
       </Router>
