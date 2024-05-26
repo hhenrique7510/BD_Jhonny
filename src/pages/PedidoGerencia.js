@@ -68,6 +68,10 @@ const Relatorio = () => {
     setFilteredRelatorios(filtered);
   };
 
+  const calcularTotalFaturamento = () => {
+    return filteredRelatorios.reduce((total, relatorio) => total + relatorio.valorTotal, 0).toFixed(2);
+  };
+
   return (
     <div className="container">
       <h2>Relatório de Pedidos</h2>
@@ -131,6 +135,10 @@ const Relatorio = () => {
               <td>{relatorio.garcom}</td>
             </tr>
           ))}
+          <tr>
+            <td colSpan="3"><strong>Faturamento</strong></td>
+            <td colSpan="2"><strong>R$ {calcularTotalFaturamento()}</strong></td>
+          </tr>
         </tbody>
       </table>
     </div>
