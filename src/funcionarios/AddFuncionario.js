@@ -37,14 +37,29 @@ export default function AddFuncionario() {
 
             // Se o tipo for "Garcom", criar o garçom
             if (funcionario.tipo === "Garcom") {
+                // Verificar se já existe um gerente
+                const gerenteResponse = await axios.get("http://localhost:8080/garcom/gerente");
+                const gerente = gerenteResponse.data;
+
                 const garcomData = {
                     fk_funcionario_cpf: funcionario.cpf,
-                    fk_gerente_cpf: null
+                    fk_gerente_cpf: gerente ? gerente.fk_funcionario_cpf : null
                 };
 
                 await axios.post("http://localhost:8080/garcom", garcomData, {
                     headers: { 'Content-Type': 'application/json' },
                 });
+
+                // Se não houver gerente, tornar o novo garçom o gerente
+                if (!gerente) {
+                    await axios.put(`http://localhost:8080/garcom/${funcionario.cpf}`, {
+                        fk_funcionario_cpf: funcionario.cpf,
+                        fk_gerente_cpf: null,
+                        pontos: 0
+                    }, {
+                        headers: { 'Content-Type': 'application/json' },
+                    });
+                }
             }
 
             // Se o tipo for "Nutricionista", criar o nutricionista

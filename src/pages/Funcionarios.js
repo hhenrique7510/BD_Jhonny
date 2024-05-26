@@ -17,11 +17,13 @@ export default function Funcionarios() {
             const nutricionistaResult = await axios.get('http://localhost:8080/nutricionistas');
 
             const funcionariosWithTipo = funcionariosResult.data.map(funcionario => {
-                const isGarcom = garcomResult.data.some(garcom => garcom.fk_funcionario_cpf === funcionario.cpf);
+                const garcom = garcomResult.data.find(garcom => garcom.fk_funcionario_cpf === funcionario.cpf);
+                const isGarcom = !!garcom;
                 const isNutricionista = nutricionistaResult.data.some(nutricionista => nutricionista.fkFuncionarioCpf === funcionario.cpf);
 
                 if (isGarcom) {
                     funcionario.tipo = 'Garcom';
+                    funcionario.isGerente = garcom.fk_gerente_cpf === null; // Verifique se o garcom é gerente
                 } else if (isNutricionista) {
                     funcionario.tipo = 'Nutricionista';
                 } else {
@@ -40,6 +42,15 @@ export default function Funcionarios() {
     const deleteFuncionarios = async (cpf) => {
         await axios.delete(`http://localhost:8080/funcionarioDelete/${cpf}`);
         loadFuncionarios();
+    };
+
+    const makeGerente = async (cpf) => {
+        try {
+            await axios.put(`http://localhost:8080/garcoms/updateGerente/${cpf}`);
+            loadFuncionarios();
+        } catch (error) {
+            console.error('Erro ao tornar gerente:', error);
+        }
     };
 
     const handleSearchChange = (event) => {
@@ -91,7 +102,12 @@ export default function Funcionarios() {
                                 <td>{funcionario.cpf}</td>
                                 <td>{funcionario.salario}</td>
                                 <td>{funcionario.celular}</td>
-                                <td>{funcionario.nome}</td>
+                                <td>
+                                    {funcionario.nome}
+                                    {funcionario.tipo === 'Garcom' && funcionario.isGerente && (
+                                        <span className="badge bg-success ms-2">G</span>
+                                    )}
+                                </td>
                                 <td>{funcionario.senha}</td>
                                 <td>{funcionario.emailPrincipal}</td>
                                 <td>{funcionario.emailSecundario}</td>
@@ -119,6 +135,14 @@ export default function Funcionarios() {
                                     >
                                         Dependente
                                     </Link>
+                                    {funcionario.tipo === 'Garcom' && !funcionario.isGerente && (
+                                        <button
+                                            className="btn btn-outline-primary mx-2"
+                                            onClick={() => makeGerente(funcionario.cpf)}
+                                        >
+                                            Tornar Gerente
+                                        </button>
+                                    )}
                                 </td>
                             </tr>
                         ))}
