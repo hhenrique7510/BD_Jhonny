@@ -5,14 +5,13 @@ import { useNavigate } from 'react-router-dom';
 export default function AddProduto() {
     let navigate = useNavigate();
     const [produto, setProduto] = useState({
-        id: "",
         nome: "",
         valor: "",
         produtos_tipo: ""  
     });
     const [error, setError] = useState("");
 
-    const { id, nome, valor, produtos_tipo } = produto;
+    const {nome, valor, produtos_tipo } = produto;
 
     const onInputChange = (e) => {
         setProduto({ ...produto, [e.target.name]: e.target.value });
@@ -23,7 +22,6 @@ export default function AddProduto() {
         setError("");  
 
         const data = {
-            id,
             nome,
             valor: parseFloat(valor),
             produtos_tipo  
@@ -63,17 +61,6 @@ export default function AddProduto() {
                 <h2 className="text-center m-4">Adicionar Produto</h2>
                 {error && <div className="alert alert-danger">{error}</div>}
                 <form onSubmit={(e) => onSubmit(e)}>
-                    <div className="mb-3">
-                        <label htmlFor="id" className="form-label">ID do Produto:</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            name="id"
-                            value={id}
-                            onChange={(e) => onInputChange(e)}
-                            placeholder="ID do produto"
-                        />
-                    </div>
                     <div className="mb-3">
                         <label htmlFor="nome" className="form-label">Nome:</label>
                         <input
