@@ -49,7 +49,7 @@ const CadastrarProduto = () => {
                         <th>Nome</th>
                         <th>Valor</th>
                         <th>Tipo de Produto</th>
-                        <th>Ações</th>
+                        <th>Ação</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,12 +60,7 @@ const CadastrarProduto = () => {
                             <td>{produto.valor}</td>
                             <td>{produto.produtos_tipo}</td>
                             <td>
-                                <button 
-                                    className="btn btn-danger mx-2"
-                                    onClick={() => deleteProduto(produto.id_prod)}
-                                >
-                                    Excluir
-                                </button>
+                               
                                 <button 
                                     className="btn btn-warning mx-2"
                                     onClick={() => navigate(`/editproduto/${produto.id_prod}`)}
