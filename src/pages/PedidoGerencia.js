@@ -10,6 +10,7 @@ const Relatorio = () => {
   const [valorMin, setValorMin] = useState('');
   const [valorMax, setValorMax] = useState('');
   const [mesa, setMesa] = useState('');
+  const [garcomComMaisPontos, setGarcomComMaisPontos] = useState(null);
 
   useEffect(() => {
     axios.get('http://localhost:8080/relatorios')
@@ -19,6 +20,14 @@ const Relatorio = () => {
       })
       .catch(error => {
         console.error("Houve um erro ao buscar os relatórios!", error);
+      });
+      
+    axios.get('http://localhost:8080/garcom/maisPontos')
+      .then(response => {
+        setGarcomComMaisPontos(response.data);
+      })
+      .catch(error => {
+        console.error("Houve um erro ao buscar o garçom com mais pontos!", error);
       });
   }, []);
 
@@ -141,6 +150,13 @@ const Relatorio = () => {
           </tr>
         </tbody>
       </table>
+
+      {garcomComMaisPontos && (
+        <div className="mt-4">
+          <h3>Garçom com mais pontos</h3>
+          <p>{garcomComMaisPontos.fk_funcionario_cpf} com {garcomComMaisPontos.pontos} pontos</p>
+        </div>
+      )}
     </div>
   );
 }
