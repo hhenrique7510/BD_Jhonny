@@ -141,7 +141,7 @@ const Relatorio = () => {
               <td>{new Date(relatorio.dataHora).toLocaleString()}</td>
               <td>{relatorio.mesa}</td>
               <td>R$ {relatorio.valorTotal.toFixed(2)}</td>
-              <td>{relatorio.garcom}</td>
+              <td>{relatorio.garcom}</td> 
             </tr>
           ))}
           <tr>
