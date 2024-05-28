@@ -1,6 +1,6 @@
 /* src/layout/Navbar.css */
 .custom-navbar {
-    background-color:#211F20 !important; /* Adicionando !important para garantir a aplicação */
+    background-color:#C1883D !important; /* Adicionando !important para garantir a aplicação */
     color: #f0e5d8;
     padding: 0.5rem 1rem;
   }
@@ -30,12 +30,12 @@
   }
   
   .custom-link{
-    color: #C1883D; /* Cor dos links */
+    color: #211F20 ; /* Cor dos links */
     font-size: 1.5rem; /* Aumento do tamanho da fonte dos links */
 }
 
 .navbar-brand {
-  color: #C1883D; /* Cor dos links */
+  color: #211F20; /* Cor dos links */
   font-size: 1.5rem; /* Aumento do tamanho da fonte dos links */
 
 }

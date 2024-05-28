@@ -12,7 +12,7 @@ export default function Footer() {
           </div>
           <div className="col-md-6 text-center text-md-right">
             <p>Desenvolvido por <a href="https://github.com/VictorHTenorio" className="developer-link">Victor</a><br/>
-            <a href="https://github.com/hhenrique7510" className="developer-link">Henrique</a></p>
+            <a href="https://github.com/hhenrique7510" className="developer-link">Henrique</a><br/><a href="https://github.com/joaohlafeta" className="developer-link">João</a></p>
           </div>
         </div>
       </div>

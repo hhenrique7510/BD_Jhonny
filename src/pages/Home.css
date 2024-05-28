@@ -1,13 +1,14 @@
 /* src/pages/Home.css */
 .home-background {
-    background-image: url('/src/imagens/DALL·E\ 2024-05-24\ 10.49.44\ -\ A\ background\ image\ for\ a\ website\ featuring\ the\ \'JOHNNY\ GASTROBAR\'\ logo.\ The\ design\ should\ be\ in\ a\ high\ resolution\,\ with\ the\ logo\ prominently\ displayed.webp'); /* URL relativa à raiz do servidor */
-    background-size: cover; 
-    background-position: center; 
-    height: 100vh; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white; 
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  }
-  
+  background-image: url('/src/imagens/teste.jpg'); /* Certifique-se de que o caminho está correto */
+  background-size: contain; /* Ajusta a imagem para caber inteira no container sem repetir */
+  background-repeat: no-repeat; /* Evita que a imagem se repita */
+  background-position: center; /* Centraliza a imagem no container */
+  background-color: #211F20; /* Define a cor de fundo como preta para combinar com a área do logo */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
